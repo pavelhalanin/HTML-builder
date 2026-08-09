@@ -2,26 +2,18 @@ const fs = require('fs');
 const path = require('path');
 
 class Task04Helper {
-  static logScore() {
+  static async copyDirectory(copy_from, copy_to) {
     console.log(
       [
-        `\n< < < < < < < <`,
-        `Task 04 Copy directory [70 / 70]`,
-        'EN',
-        `- [x] 30 / 30 After running 'node 04-copy-directory', the files-copy folder exists and exactly mirrors the contents of files`,
-        `- [x] 20 / 20 Rerunning the script after files are added/modified inside 'files' updates 'files-copy' accordingly`,
-        `- [x] 20 / 20 Rerunning the script after files are removed from 'files' also removes them from 'files-copy'`,
-        `RU:`,
-        `- [x] 30 / 30 После запуска 'node 04-copy-directory' папка files-copy существует и точно отражает содержимое files`,
-        `- [x] 20 / 20 Повторный запуск скрипта после добавления/изменения файлов в 'files' обновляет 'files-copy' соответствующим образом`,
-        `- [x] 20 / 20 Повторный запуск скрипта после удаления файлов из 'files' также удаляет их из 'files-copy'`,
-        `> > > > > > > >\n`,
+        `Copy directory and files on directory:`,
+        `- from : ${copy_from}`,
+        `- to   : ${copy_to}`,
       ].join('\n'),
     );
-  }
 
-  static async copyDirectory(copy_from, copy_to) {
+    await this.recursiveRemove(copy_to);
     await this.createDirectory(copy_to);
+
     const ARRAY = await this.getFolderInner(copy_from);
 
     for (const FILE_OR_FOLDER of ARRAY) {
@@ -57,15 +49,9 @@ class Task04Helper {
 
 async function main() {
   try {
-    Task04Helper.logScore();
-
     const PATH_FROM = path.join(__dirname, './files');
     const PATH_TO = path.join(__dirname, './files-copy');
-
-    console.log(`Copy "${PATH_FROM}" to "${PATH_TO}"`);
-
-    await Task04Helper.recursiveRemove(PATH_TO);
-    Task04Helper.copyDirectory(PATH_FROM, PATH_TO);
+    await Task04Helper.copyDirectory(PATH_FROM, PATH_TO);
   } catch (exception) {
     console.error(exception);
   }

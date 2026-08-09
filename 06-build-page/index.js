@@ -129,7 +129,6 @@ async function main() {
       './project-dist/styles.css',
     );
 
-    await Task04Helper.recursiveRemove(RELEASE_ASSETS_PATH);
     await Task04Helper.copyDirectory(DEVELOP_ASSETS_PATH, RELEASE_ASSETS_PATH);
 
     await Task05Helper.bundle(RELEASE_CSS_BUNDLE_FILE, DEVELOP_CSS_FOLDER_PATH);
