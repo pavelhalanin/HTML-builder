@@ -131,7 +131,10 @@ async function main() {
 
     await Task04Helper.copyDirectory(DEVELOP_ASSETS_PATH, RELEASE_ASSETS_PATH);
 
-    await Task05Helper.bundle(RELEASE_CSS_BUNDLE_FILE, DEVELOP_CSS_FOLDER_PATH);
+    await Task05Helper.createBundleCss(
+      RELEASE_CSS_BUNDLE_FILE,
+      DEVELOP_CSS_FOLDER_PATH,
+    );
 
     await Task06Helper.createTemplate(
       DEVELOP_TEMPLATE_PATH,

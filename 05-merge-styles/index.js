@@ -2,24 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 class Task05Helper {
-  static logScore() {
-    console.log(
-      [
-        `\n< < < < < < < <`,
-        `Task 05 Merge styles [45 / 45]`,
-        'EN',
-        `- [x] 20 / 20 After running 'node 05-merge-styles', project-dist/bundle.css exists and contains the concatenated contents of every .css file inside 'styles'`,
-        `- [x] 10 / 10 Files with extensions other than .css and any subdirectories inside 'styles' are ignored`,
-        `- [x] 15 / 15 Rerunning the script overwrites bundle.css with the up-to-date content of 'styles'`,
-        `RU:`,
-        `- [x] 20 / 20 После запуска 'node 05-merge-styles' project-dist/bundle.css существует и содержит объединённое содержимое всех файлов .css внутри 'styles'`,
-        `- [x] 10 / 10 Файлы с расширениями, отличными от .css, и любые подпапки внутри 'styles' игнорируются`,
-        `- [x] 15 / 15 Повторный запуск скрипта перезаписывает bundle.css актуальным содержимым 'styles'`,
-        `> > > > > > > >\n`,
-      ].join('\n'),
-    );
-  }
-
   static async getCssFilePathByPath(dir) {
     const ARRAY_CSS_PATH = [];
     const ITEMS = await fs.promises.readdir(dir);
@@ -63,25 +45,15 @@ class Task05Helper {
     });
   }
 
-  static getDateTimePrefix() {
-    const DATE_TIME = new Date().toJSON().slice(0, 19).replace('T', ' ');
-    return `[${DATE_TIME}] `;
-  }
-
-  static log(log) {
-    const DATE_TIME_PREFIX = this.getDateTimePrefix();
-    console.log(`${DATE_TIME_PREFIX}${log}`);
-  }
-
-  static async bundle(BUNDLE_FILE_PATH, CSS_FOLDER_PATH) {
+  static async createBundleCss(BUNDLE_FILE_PATH, CSS_FOLDER_PATH) {
     const ARRAY_CSS_PATH = await this.getCssFilePathByPath(CSS_FOLDER_PATH);
 
-    this.log('{ Start bundle css');
+    console.log(`{ Create bundle ${BUNDLE_FILE_PATH}`);
 
     const WRITE_STREAM = fs.createWriteStream(BUNDLE_FILE_PATH, 'utf-8');
 
     WRITE_STREAM.on('error', (err) => {
-      this.log(`Error writing to bundle: ${err.message}`);
+      console.log(`Error writing to bundle: ${err.message}`);
     });
 
     const FINISH_WRITE_STREAM_PROMISE = new Promise((resolve) => {
@@ -91,27 +63,24 @@ class Task05Helper {
     for (let i = 0; i < ARRAY_CSS_PATH.length; i++) {
       const CSS_PATH = ARRAY_CSS_PATH[i];
 
-      this.log(`- add to bundle: ${CSS_PATH}`);
+      console.log(`File added to bundle. File: "${CSS_PATH}"`);
       const TEXT = await this.getFileContentByPath(CSS_PATH);
       WRITE_STREAM.write(TEXT);
     }
 
     WRITE_STREAM.end();
     await FINISH_WRITE_STREAM_PROMISE;
-    this.log('} End bundle css');
+    console.log(`} Bundle created ${BUNDLE_FILE_PATH}`);
   }
 }
 
 async function main() {
   try {
-    Task05Helper.logScore();
-
     const BUNDLE_FILE_PATH = path.join(__dirname, './project-dist/bundle.css');
     const CSS_FOLDER_PATH = path.join(__dirname, './styles');
-    Task05Helper.bundle(BUNDLE_FILE_PATH, CSS_FOLDER_PATH);
+    Task05Helper.createBundleCss(BUNDLE_FILE_PATH, CSS_FOLDER_PATH);
   } catch (exception) {
     console.error(exception);
-    process.exit(1);
   }
 }
 
