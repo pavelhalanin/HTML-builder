@@ -6,15 +6,15 @@ class Task03Helper {
     console.log(
       [
         `\n< < < < < < < <`,
-        `Task 03 Files in folder`,
+        `Task 03 Files in folder [50 / 50]`,
         'EN',
-        `- [x] 0 / 15 Running 'node 03-files-in-folder' lists files from 03-files-in-folder/secret-folder to the console`,
-        `- [x] 0 / 20 Each line is formatted as '<file name> - <extension> - <size>'`,
-        `- [x] 0 / 15 Subdirectories are not listed; only files directly inside secret-folder appear`,
+        `- [x] 15 / 15 Running 'node 03-files-in-folder' lists files from 03-files-in-folder/secret-folder to the console`,
+        `- [x] 20 / 20 Each line is formatted as '<file name> - <extension> - <size>'`,
+        `- [x] 15 / 15 Subdirectories are not listed; only files directly inside secret-folder appear`,
         `RU:`,
-        `- [x] 0 / 15 Запуск 'node 03-files-in-folder' выводит список файлов из 03-files-in-folder/secret-folder в консоль`,
-        `- [x] 0 / 20 Каждая строка отформатирована как '<имя файла> - <расширение> - <размер>'`,
-        `- [x] 0 / 15 Подпапки не перечисляются; отображаются только файлы, находящиеся непосредственно внутри secret-folder`,
+        `- [x] 15 / 15 Запуск 'node 03-files-in-folder' выводит список файлов из 03-files-in-folder/secret-folder в консоль`,
+        `- [x] 20 / 20 Каждая строка отформатирована как '<имя файла> - <расширение> - <размер>'`,
+        `- [x] 15 / 15 Подпапки не перечисляются; отображаются только файлы, находящиеся непосредственно внутри secret-folder`,
         `> > > > > > > >\n`,
       ].join('\n'),
     );
