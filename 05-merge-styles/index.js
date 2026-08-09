@@ -6,15 +6,15 @@ class Task05Helper {
     console.log(
       [
         `\n< < < < < < < <`,
-        `Task 05 Merge styles`,
+        `Task 05 Merge styles [45 / 45]`,
         'EN',
-        `- [x] 0 / 20 After running 'node 05-merge-styles', project-dist/bundle.css exists and contains the concatenated contents of every .css file inside 'styles'`,
-        `- [x] 0 / 10 Files with extensions other than .css and any subdirectories inside 'styles' are ignored`,
-        `- [x] 0 / 15 Rerunning the script overwrites bundle.css with the up-to-date content of 'styles'`,
+        `- [x] 20 / 20 After running 'node 05-merge-styles', project-dist/bundle.css exists and contains the concatenated contents of every .css file inside 'styles'`,
+        `- [x] 10 / 10 Files with extensions other than .css and any subdirectories inside 'styles' are ignored`,
+        `- [x] 15 / 15 Rerunning the script overwrites bundle.css with the up-to-date content of 'styles'`,
         `RU:`,
-        `- [x] 0 / 20 После запуска 'node 05-merge-styles' project-dist/bundle.css существует и содержит объединённое содержимое всех файлов .css внутри 'styles'`,
-        `- [x] 0 / 10 Файлы с расширениями, отличными от .css, и любые подпапки внутри 'styles' игнорируются`,
-        `- [x] 0 / 15 Повторный запуск скрипта перезаписывает bundle.css актуальным содержимым 'styles'`,
+        `- [x] 20 / 20 После запуска 'node 05-merge-styles' project-dist/bundle.css существует и содержит объединённое содержимое всех файлов .css внутри 'styles'`,
+        `- [x] 10 / 10 Файлы с расширениями, отличными от .css, и любые подпапки внутри 'styles' игнорируются`,
+        `- [x] 15 / 15 Повторный запуск скрипта перезаписывает bundle.css актуальным содержимым 'styles'`,
         `> > > > > > > >\n`,
       ].join('\n'),
     );
