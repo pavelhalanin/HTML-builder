@@ -4,32 +4,6 @@ const { Task04Helper } = require('./../04-copy-directory');
 const { Task05Helper } = require('./../05-merge-styles');
 
 class Task06Helper {
-  static logScore() {
-    console.log(
-      [
-        '\n< < < < < < < <',
-        'Task 06 Build Page [135 / 135]',
-        'EN',
-        "- [x] 20 / 20 After running 'node 06-build-page', the project-dist folder is created and contains index.html, style.css, and an `assets/` folder",
-        '- [x] 35 / 35 index.html is built by substituting every {{component-name}} tag in template.html with the contents of `components/<component-name>.html`',
-        "- [x] 20 / 20 `style.css` is a bundle of all `.css` files from the '`styles`' folder",
-        '- [x] 20 / 20 `assets/` is an exact copy of `06-build-page/assets/`',
-        '- [x] 10 / 10 The original `template.html` is not modified by the script',
-        "- [x] 10 / 10 Two template tags written on the same line separated only by spaces (e.g. '`{{about}} {{articles}}`') are processed as separate components without errors",
-        '- [x] 20 / 20 Rerunning the script after a new component is added to `components/` and its tag is added to template.html correctly updates `project-dist/index.html`. Changes inside `styles/` and `assets/` are also picked up',
-        'RU:',
-        "- [x] 20 / 20 После запуска 'node 06-build-page' создаётся папка project-dist, содержащая index.html, style.css и папку `assets/`",
-        '- [x] 35 / 35 index.html собирается путём замены каждого тега {{имя-компонента}} в template.html на содержимое `components/<имя-компонента>.html`',
-        "- [x] 20 / 20 `style.css` является бандлом всех файлов `.css` из папки '`styles`'",
-        '- [x] 20 / 20 `assets/` является точной копией `06-build-page/assets/`',
-        '- [x] 10 / 10 Исходный `template.html` не изменяется скриптом',
-        "- [x] 10 / 10 Два тега шаблона, записанных в одной строке с пробелами между ними (например, '`{{about}} {{articles}}`'), обрабатываются как отдельные компоненты без ошибок",
-        '- [x] 20 / 20 Повторный запуск скрипта после добавления нового компонента в `components/` и добавления его тега в template.html корректно обновляет `project-dist/index.html`. Изменения внутри `styles/` и `assets/` также учитываются',
-        '> > > > > > > >\n',
-      ].join('\n'),
-    );
-  }
-
   static getFileContentByPath(filePath) {
     return new Promise((resolve, reject) => {
       const CHUNKS = [];
@@ -105,41 +79,48 @@ class Task06Helper {
 
     await finishWriteStreamPromise;
 
-    console.log(`${indexPath} successfuly created`);
+    console.log(`Template created: "${indexPath}"`);
   }
 }
 
 async function main() {
   try {
-    Task06Helper.logScore();
+    const PATH_DATA = {
+      assets: {
+        develop: path.join(__dirname, './assets'),
+        release: path.join(__dirname, './project-dist/assets/'),
+      },
+      template: {
+        develop: path.join(__dirname, './template.html'),
+        release: path.join(__dirname, './project-dist'),
+        includes: path.join(__dirname, './components'),
+      },
+      css: {
+        develop: path.join(__dirname, './styles'),
+        release: path.join(__dirname, './project-dist/styles.css'),
+      },
+    };
 
-    // Assets path:
-    const DEVELOP_ASSETS_PATH = path.join(__dirname, './assets');
-    const RELEASE_ASSETS_PATH = path.join(__dirname, './project-dist/assets/');
+    console.log('\nCopy assets:\n');
 
-    // Templates path:
-    const DEVELOP_TEMPLATE_PATH = path.join(__dirname, './template.html');
-    const RELEASE_TEMPLATE_FOLDER_PATH = path.join(__dirname, './project-dist');
-    const DEVELOP_COMPONENTS_PATH = path.join(__dirname, './components');
-
-    // CSS path:
-    const DEVELOP_CSS_FOLDER_PATH = path.join(__dirname, './styles');
-    const RELEASE_CSS_BUNDLE_FILE = path.join(
-      __dirname,
-      './project-dist/styles.css',
+    await Task04Helper.copyDirectory(
+      PATH_DATA.assets.develop,
+      PATH_DATA.assets.release,
     );
 
-    await Task04Helper.copyDirectory(DEVELOP_ASSETS_PATH, RELEASE_ASSETS_PATH);
+    console.log('\nCreate CSS bundle:\n');
 
     await Task05Helper.createBundleCss(
-      RELEASE_CSS_BUNDLE_FILE,
-      DEVELOP_CSS_FOLDER_PATH,
+      PATH_DATA.css.release,
+      PATH_DATA.css.develop,
     );
 
+    console.log('\nCreate template:\n');
+
     await Task06Helper.createTemplate(
-      DEVELOP_TEMPLATE_PATH,
-      RELEASE_TEMPLATE_FOLDER_PATH,
-      DEVELOP_COMPONENTS_PATH,
+      PATH_DATA.template.develop,
+      PATH_DATA.template.release,
+      PATH_DATA.template.includes,
     );
   } catch (exception) {
     console.error(exception);
