@@ -6,15 +6,15 @@ class Task04Helper {
     console.log(
       [
         `\n< < < < < < < <`,
-        `Task 04 Copy directory`,
+        `Task 04 Copy directory [70 / 70]`,
         'EN',
-        `- [x] 0 / 30 After running 'node 04-copy-directory', the files-copy folder exists and exactly mirrors the contents of files`,
-        `- [x] 0 / 20 Rerunning the script after files are added/modified inside 'files' updates 'files-copy' accordingly`,
-        `- [x] 0 / 20 Rerunning the script after files are removed from 'files' also removes them from 'files-copy'`,
+        `- [x] 30 / 30 After running 'node 04-copy-directory', the files-copy folder exists and exactly mirrors the contents of files`,
+        `- [x] 20 / 20 Rerunning the script after files are added/modified inside 'files' updates 'files-copy' accordingly`,
+        `- [x] 20 / 20 Rerunning the script after files are removed from 'files' also removes them from 'files-copy'`,
         `RU:`,
-        `- [x] 0 / 30 После запуска 'node 04-copy-directory' папка files-copy существует и точно отражает содержимое files`,
-        `- [x] 0 / 20 Повторный запуск скрипта после добавления/изменения файлов в 'files' обновляет 'files-copy' соответствующим образом`,
-        `- [x] 0 / 20 Повторный запуск скрипта после удаления файлов из 'files' также удаляет их из 'files-copy'`,
+        `- [x] 30 / 30 После запуска 'node 04-copy-directory' папка files-copy существует и точно отражает содержимое files`,
+        `- [x] 20 / 20 Повторный запуск скрипта после добавления/изменения файлов в 'files' обновляет 'files-copy' соответствующим образом`,
+        `- [x] 20 / 20 Повторный запуск скрипта после удаления файлов из 'files' также удаляет их из 'files-copy'`,
         `> > > > > > > >\n`,
       ].join('\n'),
     );
