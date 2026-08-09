@@ -6,13 +6,13 @@ class Task01Helper {
     console.log(
       [
         `\n< < < < < < < <`,
-        `Task 01 Read File`,
+        `Task 01 Read File [40 / 40]`,
         'EN',
-        `- [x] 0 / 20 Running 'node 01-read-file' from the repository root prints the contents of 01-read-file/text.txt to the console`,
-        `- [x] 0 / 20 File reading is implemented with ReadStream; no synchronous fs calls are used`,
+        `- [x] 20 / 20 Running 'node 01-read-file' from the repository root prints the contents of 01-read-file/text.txt to the console`,
+        `- [x] 20 / 20 File reading is implemented with ReadStream; no synchronous fs calls are used`,
         `RU:`,
-        `- [x] 0 / 20 Запуск 'node 01-read-file' из корня репозитория выводит содержимое 01-read-file/text.txt в консоль`,
-        `- [x] 0 / 20 Чтение файла реализовано с помощью ReadStream; синхронные вызовы fs не используются`,
+        `- [x] 20 / 20 Запуск 'node 01-read-file' из корня репозитория выводит содержимое 01-read-file/text.txt в консоль`,
+        `- [x] 20 / 20 Чтение файла реализовано с помощью ReadStream; синхронные вызовы fs не используются`,
         `> > > > > > > >\n`,
       ].join('\n'),
     );
