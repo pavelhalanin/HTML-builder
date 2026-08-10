@@ -97,7 +97,7 @@ async function main() {
       },
       css: {
         develop: path.join(__dirname, './styles'),
-        release: path.join(__dirname, './project-dist/styles.css'),
+        release: path.join(__dirname, './project-dist/style.css'),
       },
     };
 
