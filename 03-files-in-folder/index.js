@@ -1,9 +1,9 @@
-const fs = require('fs');
+const { promises: fsPromises } = require('fs');
 const path = require('path');
 
 class Task03Helper {
   static async printDirectoryInfoByPath(folderPath) {
-    const STATS = await fs.promises.stat(folderPath);
+    const STATS = await fsPromises.stat(folderPath);
 
     const IS_NOT_DIRECTORY = !STATS.isDirectory();
     if (IS_NOT_DIRECTORY) {
@@ -23,7 +23,7 @@ class Task03Helper {
   }
 
   static async getFolderItemsDataByPath(FOLDER_PATH) {
-    const files = await fs.promises.readdir(FOLDER_PATH, {
+    const files = await fsPromises.readdir(FOLDER_PATH, {
       withFileTypes: true,
     });
 
@@ -31,7 +31,7 @@ class Task03Helper {
     for (const file of files) {
       if (file.isFile()) {
         const FILE_PATH = path.join(FOLDER_PATH, file.name);
-        const STATS = await fs.promises.stat(FILE_PATH);
+        const STATS = await fsPromises.stat(FILE_PATH);
         const BYTES = STATS.size;
         const KILO_BYTES = BYTES / 1024;
 
