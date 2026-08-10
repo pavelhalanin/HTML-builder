@@ -13,7 +13,7 @@ class Task02Helper {
   }
 
   static startWriteToFileByPath(filePath) {
-    const OUTPUT = fs.createWriteStream(filePath);
+    const OUTPUT = fs.createWriteStream(filePath, { flags: 'a' });
 
     stdin.on('data', (data) => {
       const INPUT = data.toString();
