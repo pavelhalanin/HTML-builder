@@ -1,4 +1,8 @@
-const fs = require('fs');
+const {
+  createReadStream,
+  createWriteStream,
+  promises: fsPromises,
+} = require('fs');
 const path = require('path');
 const { Task04Helper } = require('./../04-copy-directory');
 const { Task05Helper } = require('./../05-merge-styles');
@@ -7,7 +11,7 @@ class Task06Helper {
   static getFileContentByPath(filePath) {
     return new Promise((resolve, reject) => {
       const CHUNKS = [];
-      const READ_STREAM = fs.createReadStream(filePath, 'utf-8');
+      const READ_STREAM = createReadStream(filePath, 'utf-8');
 
       READ_STREAM.on('data', (chunk) => {
         CHUNKS.push(chunk);
@@ -42,7 +46,7 @@ class Task06Helper {
   }
 
   static async createFolderIfNotExists(folderPath) {
-    await fs.promises.mkdir(folderPath, { recursive: true });
+    await fsPromises.mkdir(folderPath, { recursive: true });
   }
 
   static async createTemplate(templatePath, buildTempatePath, componentsPath) {
@@ -63,7 +67,7 @@ class Task06Helper {
     await Task06Helper.createFolderIfNotExists(buildTempatePath);
     const indexPath = path.join(buildTempatePath, 'index.html');
 
-    const writeStream = fs.createWriteStream(indexPath, 'utf-8');
+    const writeStream = createWriteStream(indexPath, 'utf-8');
 
     writeStream.on('error', (err) => {
       console.error(`Error writing to ${indexPath}: ${err.message}`);

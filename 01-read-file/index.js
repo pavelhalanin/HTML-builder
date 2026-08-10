@@ -1,11 +1,11 @@
-const fs = require('fs');
+const { createReadStream } = require('fs');
 const path = require('path');
 
 class Task01Helper {
   static getFileContentByPath(filePath) {
     return new Promise((resolve, reject) => {
       const CHUNKS = [];
-      const READ_STREAM = fs.createReadStream(filePath, 'utf-8');
+      const READ_STREAM = createReadStream(filePath, 'utf-8');
 
       READ_STREAM.on('data', (chunk) => {
         CHUNKS.push(chunk);

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { createWriteStream } = require('fs');
 const path = require('path');
 
 const { stdin, stdout } = process;
@@ -13,7 +13,7 @@ class Task02Helper {
   }
 
   static startWriteToFileByPath(filePath) {
-    const OUTPUT = fs.createWriteStream(filePath, { flags: 'a' });
+    const OUTPUT = createWriteStream(filePath, { flags: 'a' });
 
     stdin.on('data', (data) => {
       const INPUT = data.toString();

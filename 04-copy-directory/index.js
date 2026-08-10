@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { promises: fsPromises } = require('fs');
 const path = require('path');
 
 class Task04Helper {
@@ -27,20 +27,20 @@ class Task04Helper {
         continue;
       }
 
-      await fs.promises.copyFile(PATH_FROM, PATH_TO);
+      await fsPromises.copyFile(PATH_FROM, PATH_TO);
     }
   }
 
   static async getFolderInner(folderPath) {
-    return await fs.promises.readdir(folderPath, { withFileTypes: true });
+    return await fsPromises.readdir(folderPath, { withFileTypes: true });
   }
 
   static async createDirectory(folderPath) {
-    await fs.promises.mkdir(folderPath, { recursive: true });
+    await fsPromises.mkdir(folderPath, { recursive: true });
   }
 
   static async recursiveRemove(folderPath) {
-    await fs.promises.rm(folderPath, {
+    await fsPromises.rm(folderPath, {
       recursive: true,
       force: true,
     });
